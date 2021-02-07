@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SignalR Chat</title>
+</head>
+<body>
+    <div id="loginBlock">
+        Введите логин:<br />
+        <input id="userName" type="text" />
+        <input id="loginBtn" type="button" value="Войти" />
+    </div><br />
+
+    <div id="header"></div><br />
+
+    <div id="inputForm">
+        <input type="text" id="message" />
+        <input type="button" id="sendBtn" value="Отправить" />
+    </div>
+    <div id="chatroom"></div>
+    
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chat").configureLogging(signalR.LogLevel.Information)
+            .build();
+        let connectionId = "";
+
+        let userName = '';
+        // получение сообщения от сервера
+        hubConnection.on('Receive', function (message, userName) {
+
+            // создаем элемент <b> для имени пользователя
+            let userNameElem = document.createElement("b");
+            userNameElem.appendChild(document.createTextNode(userName + ': '));
+
+            // создает элемент <p> для сообщения пользователя
+            let elem = document.createElement("p");
+            elem.appendChild(userNameElem);
+            elem.appendChild(document.createTextNode(message));
+
+            var firstElem = document.getElementById("chatroom").firstChild;
+            document.getElementById("chatroom").insertBefore(elem, firstElem);
+
+        });
+
+        hubConnection.on('Notify', function (message) {
+
+            // добавляет элемент для диагностического сообщения
+            let notifyElem = document.createElement("b");
+            notifyElem.appendChild(document.createTextNode(message));
+            let elem = document.createElement("p");
+            elem.appendChild(notifyElem);
+            var firstElem = document.getElementById("chatroom").firstChild;
+            document.getElementById("chatroom").insertBefore(elem, firstElem);
+        });
+
+        // установка имени пользователя
+        document.getElementById("loginBtn").addEventListener("click", function (e) {
+            userName = document.getElementById("userName").value;
+            document.getElementById("header").innerHTML = '<h3>Welcome ' + userName + '</h3>';
+        });
+        // отправка сообщения на сервер
+        document.getElementById("sendBtn").addEventListener("click", function (e) {
+            let message = document.getElementById("message").value;
+            hubConnection.invoke("Send", message, userName);
+        });
+
+        hubConnection.start().then(() => {
+            // после соединения получаем id подключения
+            console.log(hubConnection.connectionId);
+            connectionId = hubConnection.connectionId;
+        });
+    </script>
+</body>
+</html>
