@@ -29,19 +29,19 @@ namespace TechnicalSupport
 
 
         // [Authorize]
-        public async Task Send(string message, string userName)
+        public async Task Send(Message message)
         {
 
 
             if (!Context.User.Identity.IsAuthenticated)
             {
-                await Clients.Group(Context.UserIdentifier).SendAsync("Receive", Context.UserIdentifier.ToString() + "grup", Context.UserIdentifier);
+                await Clients.Group(Context.UserIdentifier).SendAsync("Receive", message);
                 var empid = _context.Dialogs.FirstOrDefault(em => em.UserId.ToString() == Context.UserIdentifier).EmployeeId;
                    
             if (empid!= null)
                 {
                    
-                    await Clients.User(empid.ToString()).SendAsync("Receive", empid.ToString() + "empoly", empid);
+                    await Clients.User(empid.ToString()).SendAsync("Receive", message);
 
                 }
 
@@ -56,7 +56,7 @@ namespace TechnicalSupport
                
             {
                
-                    await Clients.User(Context.UserIdentifier.ToString()).SendAsync("Receive", Context.UserIdentifier.ToString() + "send", Context.UserIdentifier);
+                    await Clients.User(Context.UserIdentifier.ToString()).SendAsync("Receive", message);
 
 
                 IReadOnlyList<string> emp = _context.Dialogs.Where(em => em.EmployeeId.ToString() == Context.UserIdentifier).Select(s=>s.UserId.ToString()).ToList<string>();
@@ -66,7 +66,7 @@ namespace TechnicalSupport
 
                     foreach (var t in emp)
                     {
-                        await Clients.Group(t.ToLower()).SendAsync("Receive", t.ToString() + "grup", Context.UserIdentifier);
+                        await Clients.Group(t.ToLower()).SendAsync("Receive", message);
                       
 
                     }
@@ -122,7 +122,7 @@ namespace TechnicalSupport
                 if (employee != null)
                 {
                     employee.StatusOnline = true;
-                    await Clients.User(employee.Id.ToString()).SendAsync("Receive", employee.Id.ToString() + "send", employee.Name.ToString());
+                    await Clients.User(employee.Id.ToString()).SendAsync("Receive", new Message() {Name="Test", Text="Test text" });
 
                 }
 
@@ -157,7 +157,7 @@ namespace TechnicalSupport
 
 
 
-            await Clients.All.SendAsync("Notify", $"{Context.ConnectionId} вошел в чат");
+            await Clients.All.SendAsync("Notify", new Message() { Name = "Test", Text = Context.ConnectionId.ToString() });
             await base.OnConnectedAsync();
         }
       
