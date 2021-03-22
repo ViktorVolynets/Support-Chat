@@ -1,0 +1,191 @@
+﻿<div id="Modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Do you want to complete this dialog?</h2>
+            <span class="closeModal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <label>Please select a reason <span class="req">*</span></label>
+                <div class="reason-buttons">
+                    <ul>
+                        <li>
+                            <button onclick="SetReasone(this)" class="modal-status btn btn-warning" tabindex="1" data-reason="1"><h3>Not solved</h3></button>
+                        </li>
+                        <li>
+                            <button onclick="SetReasone(this)" class="modal-status btn btn-success" tabindex="2" data-reason="3"><h3>Solved</h3></button>
+                        </li>
+                        <li>
+                            <button onclick="SetReasone(this)" class="modal-status btn btn-info" tabindex="3" data-reason="2"><h3>Waiting solution</h3></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" class="txt" tabindex="4" placeholder=" address@mail.ru" required autocomplete="on">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modalConfirn btn btn-5" tabindex="5" id="modalYes"><h3>Yes</h3></button>
+            <button class="modalConfirn btn btn-5" tabindex="6" id="modalNo"><h3>No</h3></button>
+        </div>
+    </div>
+</div>
+
+
+<div class="chat header">
+    <div>Welcome</div>
+    <div id="userNameBlock">
+        Введите ник:<br />
+        <input id="userName" type="text" />
+        <input id="loginBtn" type="button" value="Установить" />
+    </div>
+    <br />
+    <div id="header"></div>
+    <span class="enterName"><i class="fas fa-user-edit"></i>;</span>
+    <span class="enterEmail"><i class="fas fa-envelope"></i></span>
+    <span class="closeChat">&times;</span>
+    <span class="minimizeChat">&#128469;</span>
+</div>
+
+<div class="chat-messages" id="chat-messages">
+
+
+  
+</div>
+
+
+<div class="chat footer">
+    <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="Send a message..." />
+        <button type="submit" class="chat-submit" id="chat-submit"><i class='fas fa-paper-plane fa-lg'></i></button>
+    </div>
+    <div class="chat-button-container">
+        <div class="chat-button-row">
+        </div>
+        <div class="chat-button-row">
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+
+    const hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/chat")
+        .configureLogging(signalR.LogLevel.Information)
+        .withAutomaticReconnect()
+        .build();
+
+
+    hubConnection.serverTimeoutInMilliseconds = 1000 * 60 * 10; // 1 second * 60 * 10 = 10 minutes.
+
+    let userName = "UserDefault";
+
+    let message = { name: userName }; 
+
+    // получение сообщения от сервера
+    hubConnection.on("Receive", function (mes) {
+
+        message.dialogid = mes.dialogid;
+
+        let servmessage = document.createElement("div");
+
+        if (mes.senderType == "in") {
+
+            servmessage.className = "chat first";
+        }
+        else {
+
+            servmessage.className = "chat second";
+
+        }
+
+
+
+
+     
+        servmessage.appendChild(document.createTextNode('Name:' + mes.name));
+        // создает элемент <p> для сообщения пользователя
+        let elem = document.createElement("p");
+
+        if (mes.textTupe == "json") {
+
+            jsontext = JSON.parse(mes.text);
+            elem.appendChild(document.createTextNode(jsontext.text));
+            servmessage.appendChild(elem);
+           
+            if (jsontext.buttoncount > 0) {
+                var index;
+                for (index = 0; index < jsontext.textbutton.length; ++index) {
+
+                    var button = document.createElement("button");
+                    button.innerHTML = jsontext.textbutton[index];
+                    button.classList.add("btn-interract");
+                    button.classList.add("btn");
+                    button.classList.add("btn-primary");
+
+                    servmessage.appendChild(button);
+                    button.onclick = UserButtonInterracts;
+
+                    var br = document.createElement("br");
+                    servmessage.appendChild(br);
+                }
+
+            }
+           
+        }
+        else
+        {
+            elem.appendChild(document.createTextNode(mes.text));
+            servmessage.appendChild(elem);
+        }
+
+
+
+
+        var firstElem = document.getElementById("chat-messages").firstChild;
+        document.getElementById("chat-messages").insertBefore(servmessage, firstElem);
+       
+
+    });
+  
+
+
+    function UserButtonInterracts(elem) {
+        //console.dir(elem);
+        //либо тут  добавлять
+        hubConnection.invoke("Send", { "Text": this.innerHTML, "Name": userName, "SenderType": "in" });
+       
+      //  SwapChatPanel();
+      //  $(".chat-button-row").empty();
+    }
+
+    // установка имени пользователя
+    document.getElementById("loginBtn").addEventListener("click", function (e) {
+        userName = document.getElementById("userName").value;
+        document.getElementById("header").innerHTML = "<h3>Welcome " + userName + "</h3>";
+        message.name = userName;
+     
+
+
+    });
+
+    // отправка сообщения от простого пользователя
+
+
+    document.getElementById("chat-submit").addEventListener("click", function (e) {
+        let text = document.getElementById("chat-input").value;
+        let mes = {};
+        mes.name = message.name;
+        mes.text = text;
+        hubConnection.invoke("Send", mes);
+    });
+
+
+    hubConnection.start();
+</script>

@@ -1,0 +1,161 @@
+﻿<div id="tab" class="tab">
+ 
+</div>
+<div id="allchat">
+    <div id="defaultdiv" class="tabcontent">
+       
+    </div>
+
+
+</div>
+
+@if (User.IsInRole("EMPLOYEE"))
+{
+<div class="rowmessage" id="notifyForm">
+    <div class="col-25">
+
+    </div>
+    <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
+    </div>  
+        <input type="submit" id="notifyBtn" value="Submit">
+    </div>
+
+
+}
+
+
+
+
+
+<script>
+
+
+
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chat")
+            .configureLogging(signalR.LogLevel.Information)
+            .withAutomaticReconnect()
+            .build();
+
+
+
+  //  const opts = { accessTokenFactory: () => this.authService.getAuthToken() };
+
+
+   // const hubConnection = new signalR.HubConnectionBuilder()
+ //  .withUrl(`${environment.backendAddress}progress-notifier`, opts)
+ //  .build();
+
+    hubConnection.serverTimeoutInMilliseconds = 1000 * 60 * 10; // 1 second * 60 * 10 = 10 minutes.
+
+
+    let userName = "Admin";
+    let buttondialogs = new Map();
+    // получение сообщения от сервера
+    hubConnection.on("Receive", function (mes) {
+
+      
+        document.getElementById("tab").style.display = "block";
+        document.getElementById("notifyForm").style.display = "block";
+
+        if (buttondialogs.has(mes.dialogId)) {
+
+
+
+            let messageelem = document.createElement("div");
+            if (mes.senderType == "in") {
+                messageelem.className = "containerchat";
+                let imgicon = document.createElement("img");
+                imgicon.src = "/Icons/employee.png";
+                messageelem.appendChild(imgicon);
+            }
+            else {
+                messageelem.className = "containerchat darker";
+                let imgicon = document.createElement("img");
+                imgicon.src = "/Icons/user.png";
+                imgicon.className = "right";
+                messageelem.appendChild(imgicon);
+            }
+            messageelem.appendChild(document.createTextNode(mes.text));
+
+
+          
+            document.getElementById(mes.dialogId).appendChild(messageelem);
+
+
+
+
+        } else {
+            buttondialogs.set(mes.dialogId, mes.Name);
+
+            let buttondialog = document.createElement("button");
+            buttondialog.className = "tablinks";
+
+            buttondialog.value = mes.dialogId;
+            buttondialog.innerHTML = mes.name;
+            buttondialog.onclick = openDialog;
+
+          
+            document.getElementById("tab").appendChild(buttondialog);
+
+
+            let divdialog = document.createElement("div");
+            divdialog.className = "tabcontent";
+            divdialog.id = mes.dialogId;
+            let messageelem = document.createElement("div");
+            if (mes.senderType == "in") {
+                messageelem.className = "containerchat";
+                let imgicon = document.createElement("img");
+                imgicon.src = "/Icons/employee.png";
+                messageelem.appendChild(imgicon);
+            }
+            else {
+                messageelem.className = "containerchat darker";
+                let imgicon = document.createElement("img");
+                imgicon.src = "/Icons/user.png";
+                imgicon.className = "right";
+                messageelem.appendChild(imgicon);
+            }
+
+            messageelem.appendChild(document.createTextNode(mes.text));
+            divdialog.appendChild(messageelem);
+            document.getElementById("allchat").appendChild(divdialog);
+
+
+        }
+
+       
+
+
+        var objDiv = document.getElementById(mes.dialogId);
+        objDiv.scrollTop = objDiv.scrollHeight+10;
+
+    });
+
+
+   
+        // отправка сообщения от администратора
+      
+        document.getElementById("notifyBtn").addEventListener("click", function(e) {
+            let message = document.getElementById("subject").value;
+            let i;
+            let id;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                if (tabcontent[i].style.display == "block") {
+
+                    id = tabcontent[i].id;
+                }
+            };
+
+          
+            hubConnection.invoke("SendAdmin", { "Text": message, "Name": userName, dialogId: id, "SenderType": "in"});
+        });
+
+
+    hubConnection.start();
+</script>
+
+
+

@@ -1,0 +1,25 @@
+﻿@using TechnicalSupport.Models.ServiceModels
+<h1>Stats</h1><br><br>
+
+<div class="form-group">
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach(ErrorLog log in ViewBag.ErrorLogs)
+        {
+            <tr>
+                <th>@log.Id</th>
+                <th>@log.Time</th>
+                <th>@log.Code </th>
+                <th>@log.LogMessage</th>
+                <th>
+                    <a asp-controller="Admin" asp-action="GetErrorLog" asp-route-id="@log.Id">Info</a>
+                </th>
+            </tr>
+        }
+    </table>
+</div>

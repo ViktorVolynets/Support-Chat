@@ -1,0 +1,23 @@
+﻿@using TechnicalSupport.Models.ServiceModels
+<h1>Stats</h1>
+<br>
+<br>
+
+<div class="form-group">
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (TraceLog  log in ViewBag.TraceLogs)
+        {
+            <tr>
+                <th>@log.Id</th>
+                <th>@log.Time</th>
+                <th>@log.LogMessage</th>
+            </tr>
+        }
+    </table>
+</div>

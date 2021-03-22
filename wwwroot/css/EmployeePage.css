@@ -1,0 +1,160 @@
+﻿* {
+    box-sizing: border-box
+}
+
+/* Стиль табуляции */
+.tab {
+    display: block;
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    min-height: 200px;
+}
+
+    /* Стиль кнопок, которые используются для открытия содержимого вкладки */
+    .tab button {
+        display: block;
+        background-color: inherit;
+        color: black;
+        padding: 22px 16px;
+        width: 100%;
+        border: none;
+        outline: none;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        /* Изменение цвета фона кнопок при наведении курсора */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Создать активный текущий класс "вкладку кнопок" */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+/* Стиль содержимого вкладки */
+.tabcontent {
+    display: none;
+    float: left;
+    padding: 0px 12px;
+    width: 70%;
+    border-left: none;
+    height: 500px;
+    padding: 0 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#defaultdiv {
+    width: 70%;
+    height: 200px;
+    display: block;
+}
+
+
+.containerchat {
+    border: 2px solid #dedede8c;
+    background-color: #a7a4a436;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+.darker {
+    border-color: #cef4ff;
+    background-color: #cbf2ff91;
+}
+
+
+.containerchat::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.containerchat img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+ 
+    .containerchat img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right: 0;
+    }
+
+
+
+
+
+
+
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+#notifyForm {
+   
+}
+
+.rowmessage:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+

@@ -1,0 +1,48 @@
+﻿@using TechnicalSupport.Models.ServiceModels
+
+<h1>@ViewBag.Log.Id</h1>
+<br>
+
+
+<div>
+    <div class="form-group">
+        <div class="form-group">
+            <label style="text-decoration:underline">Time</label>
+        </div>
+        <div class="form-group">
+            <label class="text-center">@ViewBag.Log.Time</label>
+        </div>
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label style="text-decoration:underline">Message</label>
+        </div>
+
+        <div class="form-group">
+            <label class="text-center">@ViewBag.Log.LogMessage</label>
+        </div>
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label style="text-decoration:underline">Code</label>
+        </div>
+        <div class="form-group">
+            <label class="text-center">@ViewBag.Log.Code</label>
+        </div>
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group">
+            <label style="text-decoration:underline">StackTrace</label>
+        </div>
+        <div class="form-group">
+            <label class="text-lg-left">@ViewBag.Log.StackTrace</label>
+        </div>
+        <hr>
+    </div>
+</div>

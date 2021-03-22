@@ -1,0 +1,421 @@
+﻿/* Chat containers */
+.user-chat-container {
+    display: none;
+    overflow-y: auto;
+    max-width: 50%;
+    max-height: 85%;
+    height: 80%;
+    border: 1px solid #fff;
+    border-radius: 1em;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS-E7M-Lk-v1WX_HR_p6kHtYfFKI8w9prMXw&usqp=CAU) left top no-repeat,url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSINQdRaYhwo5kPHTD4Kk6TkSv6zahUW-yccg&usqp=CAU) left bottom repeat;
+    background-size: 100%;
+    z-index: 1000;
+}
+
+.first, .second {
+    border-radius: 5px;
+    padding: 10px;
+    margin: 1.5rem 0;
+}
+
+div.user-chat-container div.chat.first {
+    background-color: lightblue;
+    border: 2px solid blue;
+    margin-right: 10%;
+}
+.chat.second {
+    border: 2px solid #dedede;
+    border-color: #ccc;
+    background-color: #ddd;
+    margin-left: 10%;
+}
+
+/* Style time text */
+div.chat.second span.time {
+    float: right;
+}
+div.chat.first span.time {
+    float: left;
+}
+
+.user-chat-container div.chat span.time{
+    margin-top:.5rem;
+    font-size:1.4rem;
+    font-weight:500;
+}
+
+.chat p {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 12px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Style images */
+.user-chat-container img {
+    max-width: 3rem;
+    max-height: 3rem;
+}
+
+i.fas.fa-users {
+    display: inline-block;
+}
+
+.user-chat-container img {
+    border-radius: 50%;
+}
+
+/* Style the right image */
+div.chat.second img {
+    float: right;
+    margin-left: 20px;
+}
+div.chat.first img {
+    float: left;
+    margin-right: 20px;
+}
+
+span.closeChat, span.minimizeChat {
+    color: black;
+    float: right;
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1rem;
+}
+
+span.minimizeChat {
+    line-height: .5rem;
+}
+
+span.closeChat:hover, span.closeChat:focus, span.minimizeChat:hover, span.minimizeChat:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.chat-messages{
+    padding-bottom:3rem;
+}
+
+.chat.header {
+    background: #ffe93e;
+    position: sticky;
+    top: 0;
+    padding: 5px;
+    width: 100%;
+    height: 10%;
+    max-height: 15%;
+}
+.chat.header>div{
+    position: relative;
+    display:inline-block;
+}
+
+/*Scroll*/
+#user-chat-container.user-chat-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 1rem;
+}
+#user-chat-container.user-chat-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+#user-chat-container.user-chat-container::-webkit-scrollbar {
+    width: 3%;
+    background-color: #F5F5F5;
+}
+
+#user-chat-container.user-chat-container::-webkit-scrollbar-thumb {
+    background-color: #5A5EB9;
+    border-radius: 1rem;
+}
+#user-chat-container.user-chat-container::-webkit-scrollbar:hover {
+    cursor: pointer;
+}
+/*Scroll*/
+
+div.chat.footer {
+    position: sticky;
+    bottom: 0;
+    background: red;
+    line-height: unset;
+    background: url(https://www.stratoscale.com/wp-content/uploads/2019/05/bigstock-168398480.jpg);
+    background-size: 100%;
+}
+
+div.chat-input {
+    position:relative;
+    left:0;
+    line-height:unset;
+    /*position:sticky;
+    background:red;
+    bottom:0;*/
+}
+#chat-input {
+    color:black;
+    background: #f4f7f9;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 47px;
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border: none;
+    resize: none;
+    outline: none;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: hidden;
+}
+
+.chat-submit {
+    position: absolute;
+    bottom: .4rem;
+    right: 2%;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 50%;
+    color: #5A5EB9;
+    width: 35px;
+    height: 35px;
+}
+
+
+
+/*Open close system
+--------------------------------------------------------------------------------    */
+#ChatOpenButton {
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    z-index: 999;
+    font-size: 2rem;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    padding: 4px 10px 5px 10px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+}
+
+#ChatOpenButton::after {
+    content: "\f086";
+    font-family: FontAwesome;
+    display: none;
+    height: 0;
+    width: 0px;
+}
+
+#ChatOpenButton:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/*--------------------------------------------------------------------------------
+    Open close system */
+
+
+/*CHAT buttons
+--------------------------------------------------------------------------------    */
+.chat-button-container {
+    display: none;
+    position: relative;
+    left: 0;
+    bottom: 5%;
+    line-height: unset;
+
+}
+.chat-button-container .chat-button-row{
+    padding: 1%;
+}
+.chat-button-container.chat-button-row .btn-interract {
+    padding: 10%;
+}
+button.btn-interract {
+    margin-right: 2%;
+}
+/*--------------------------------------------------------------------------------
+   CHAT buttons */
+
+/*close connection modal 
+--------------------------------------------------------------------------------    */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal ul li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    /*border: 1px solid #000;*/ /* Рамка вокруг текста */
+    padding: 3px; /* Поля вокруг текста */
+}
+
+.btn:focus {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        /*background-color: #001F3F;*/
+    }
+
+    50% {
+        background-color: #59ffe0;
+    }
+    0% {
+        /*background-color: #001F3F;*/
+    }
+}
+
+.closeModal {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .closeModal:hover, .closeModal:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+/* Add Animation */
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+.row {
+    display: block;
+    padding: 7px 8px;
+    margin-bottom: 7px;
+}
+
+    .row:hover {
+        background: #f1f7fa;
+    }
+
+label {
+    /*display: block;*/
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: auto;
+    padding: 6px 0;
+    color: #464646;
+    vertical-align: top;
+    width: 15rem;
+    margin-bottom: unset;
+}
+
+label span.req, span.req {
+    color: #ff0000;
+}
+
+.modalConfirn {
+    width: 100%;
+    background: none;
+    border: none;
+}
+    .modalConfirn h3 {
+        width: 100%;
+    }
+
+.modalConfirnbtn:hover {
+    background: white;
+    color: #e1332d;
+}
+
+.modalConfirn.btn {
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+    .modalConfirn.btn:hover {
+        text-decoration: none;
+    }
+
+.modalConfirn.btn-5 {
+    border: 0 solid;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+    outline: 1px solid;
+    outline-color: rgba(255, 255, 255, 0.5);
+    outline-offset: 0px;
+    text-shadow: none;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+    .modalConfirn.btn-5:hover {
+        border: 1px solid;
+        box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+        outline-color: rgba(255, 255, 255, 0);
+        outline-offset: 15px;
+        text-shadow: 1px 1px 2px #427388;
+    }
+
+/*--------------------------------------------------------------------------------
+   close connection modal  */

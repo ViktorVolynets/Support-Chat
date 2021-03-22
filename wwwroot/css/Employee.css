@@ -1,0 +1,17 @@
+﻿.Work-Time
+{
+    display:inline-block;
+}
+
+.Work-Time label {
+   font-size:80%;
+}
+
+
+.Work-Time select {
+    display: inline-block;
+}
+
+label.control-label.Work-Time {
+    display: block;
+}
