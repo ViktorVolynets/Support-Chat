@@ -530,3 +530,55 @@ Error Number:4060,State:1,Class:11
 22.03.2021 07:24:12  Hosting environment: Development
 22.03.2021 07:24:12  Content root path: C:\Users\Vv\Documents\sourceTree\Support-chat
 22.03.2021 7:25:53  User email: admin1@mail.com has been authenticated
+24.03.2021 07:14:35  Application started. Press Ctrl+C to shut down.
+24.03.2021 07:14:35  Hosting environment: Development
+24.03.2021 07:14:35  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 07:38:22  Application started. Press Ctrl+C to shut down.
+24.03.2021 07:38:23  Hosting environment: Development
+24.03.2021 07:38:23  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 07:41:47  Application started. Press Ctrl+C to shut down.
+24.03.2021 07:41:47  Hosting environment: Development
+24.03.2021 07:41:47  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 07:42:10  Application started. Press Ctrl+C to shut down.
+24.03.2021 07:42:10  Hosting environment: Development
+24.03.2021 07:42:11  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 7:44:30  An exception occurred while iterating over the results of a query for context type 'TechnicalSupport.Data.ChatContext'.
+System.InvalidOperationException: A second operation was started on this context before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+   at Microsoft.EntityFrameworkCore.Internal.ConcurrencyDetector.EnterCriticalSection()
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+24.03.2021 7:44:37  Error when dispatching 'OnConnectedAsync' on hub.
+24.03.2021 07:45:00  Application started. Press Ctrl+C to shut down.
+24.03.2021 07:45:00  Hosting environment: Development
+24.03.2021 07:45:00  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 07:51:12  Application started. Press Ctrl+C to shut down.
+24.03.2021 07:51:12  Hosting environment: Development
+24.03.2021 07:51:12  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 08:26:06  Application started. Press Ctrl+C to shut down.
+24.03.2021 08:26:07  Hosting environment: Development
+24.03.2021 08:26:07  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 08:32:54  Application started. Press Ctrl+C to shut down.
+24.03.2021 08:32:55  Hosting environment: Development
+24.03.2021 08:32:55  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 08:37:59  Application started. Press Ctrl+C to shut down.
+24.03.2021 08:38:00  Hosting environment: Development
+24.03.2021 08:38:00  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 08:47:09  Application started. Press Ctrl+C to shut down.
+24.03.2021 08:47:10  Hosting environment: Development
+24.03.2021 08:47:10  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 08:52:56  Application started. Press Ctrl+C to shut down.
+24.03.2021 08:52:56  Hosting environment: Development
+24.03.2021 08:52:56  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 08:58:11  Application started. Press Ctrl+C to shut down.
+24.03.2021 08:58:12  Hosting environment: Development
+24.03.2021 08:58:12  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 09:04:28  Application started. Press Ctrl+C to shut down.
+24.03.2021 09:04:28  Hosting environment: Development
+24.03.2021 09:04:28  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 9:06:38  User email: admin@gmail.com has been authenticated
+24.03.2021 9:07:19  User email: admin1@mail.com has been authenticated
+24.03.2021 09:16:11  Application started. Press Ctrl+C to shut down.
+24.03.2021 09:16:11  Hosting environment: Development
+24.03.2021 09:16:11  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat
+24.03.2021 09:22:22  Application started. Press Ctrl+C to shut down.
+24.03.2021 09:22:22  Hosting environment: Development
+24.03.2021 09:22:22  Content root path: C:\Users\Lv\Documents\Kraken\MyGIT-Support-Chat\Support-Chat

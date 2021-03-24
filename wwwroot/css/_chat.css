@@ -2,8 +2,8 @@
 .user-chat-container {
     display: none;
     overflow-y: auto;
-    max-width: 50%;
-    min-width: 30%;
+    max-width: 30%;
+    min-width: 25%;
     max-height: 85%;
     height: 80%;
     border: 1px solid #fff;
@@ -11,7 +11,7 @@
     position: fixed;
     right: 2rem;
     bottom: 2rem;
-    background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS-E7M-Lk-v1WX_HR_p6kHtYfFKI8w9prMXw&usqp=CAU) left top no-repeat,url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSINQdRaYhwo5kPHTD4Kk6TkSv6zahUW-yccg&usqp=CAU) left bottom repeat;
+    background-color: #d3d3d36b;
     background-size: 100%;
     z-index: 1000;
 }
@@ -30,7 +30,7 @@ div.user-chat-container div.chat.first {
 .chat.second {
     border: 2px solid #dedede;
     border-color: #ccc;
-    background-color: #ddd;
+    background-color: #fff;
     margin-left: 10%;
 }
 
@@ -42,10 +42,10 @@ div.chat.first span.time {
     float: left;
 }
 
-.user-chat-container div.chat span.time{
-    margin-top:.5rem;
-    font-size:1.4rem;
-    font-weight:500;
+.user-chat-container div.chat span.time {
+    margin-top: -10px;
+    font-size: 0.7rem;
+    font-weight: 500;
 }
 
 .chat p {
@@ -100,9 +100,13 @@ span.closeChat:hover, span.closeChat:focus, span.minimizeChat:hover, span.minimi
     cursor: pointer;
 }
 
-.chat-messages{
-    padding-bottom:3rem;
-    min-height: 2000px;
+
+.chat-messages {
+    padding-bottom: 3rem;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
@@ -112,8 +116,7 @@ span.closeChat:hover, span.closeChat:focus, span.minimizeChat:hover, span.minimi
     top: 0;
     padding: 5px;
     width: 100%;
-    height: 10%;
-    max-height: 15%;
+ 
 }
 .chat.header>div{
     position: relative;
@@ -161,6 +164,7 @@ div.chat-input {
     background:red;
     bottom:0;*/
 }
+
 #chat-input {
     color:black;
     background: #f4f7f9;
@@ -196,6 +200,10 @@ div.chat-input {
     height: 35px;
 }
 
+.userName {
+    max-width: 30%;
+    min-width: 25%;
+}
 
 
 /*Open close system

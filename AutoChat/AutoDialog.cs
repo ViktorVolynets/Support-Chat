@@ -70,6 +70,7 @@ namespace TechnicalSupport
 
             mes.TextTupe = "text";
             mes.Name = "Bot";
+            mes.SenderType = "in";
 
             if (!clientState.ContainsKey(mes.DialogId))
             {

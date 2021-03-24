@@ -36,7 +36,10 @@ hubConnection.on("Receive", function (mes) {
 
         jsontext = JSON.parse(mes.text);
         elem.appendChild(document.createTextNode(jsontext.text));
-        servmessage.appendChild(elem);
+          
+            var br = document.createElement("br");
+            elem.appendChild(br);
+          
         if (jsontext.buttoncount > 0) {
             var index;
             for (index = 0; index < jsontext.textbutton.length; ++index) {
@@ -46,28 +49,34 @@ hubConnection.on("Receive", function (mes) {
                 button.classList.add("btn");
                 button.classList.add("btn-primary");
 
-                servmessage.appendChild(button);
+               // servmessage.appendChild(button);
                 elem.appendChild(button);
                 button.onclick = UserButtonInterracts;
 
                 var br = document.createElement("br");
-                servmessage.appendChild(br);
+                elem.appendChild(br);
+            
             } 
 
         }
-        var str = "              <span class=\"time\">" + new Date().toLocaleString() + "<\/span>";
-        elem.insertAdjacentHTML('beforeend', str);
+      
     }
     else {
         elem.appendChild(document.createTextNode(mes.text));
-        var str = "              <span class=\"time\">" + new Date().toLocaleString() + "<\/span>";
-        elem.insertAdjacentHTML('beforeend', str);
-        servmessage.appendChild(elem);
     }
 
- 
+  
+    servmessage.appendChild(elem);
+    var br = document.createElement("br");
+    servmessage.appendChild(br);
+
+    var str = "              <span class=\"time\">" + new Date().toLocaleString() + "<\/span>";
+    servmessage.insertAdjacentHTML('beforeend', str);
 
     var firstElem = document.getElementById("chat-messages").firstChild;
-    document.getElementById("chat-messages").insertBefore(servmessage, firstElem);
+    document.getElementById("chat-messages").appendChild(servmessage);
+
+    var objDiv = document.getElementById("chat-messages");
+    objDiv.scrollTop = objDiv.scrollHeight + 10;
 });
 hubConnection.start();

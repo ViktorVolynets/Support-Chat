@@ -41,7 +41,7 @@ namespace TechnicalSupport
 
             if (dialog != null)
             {
-                message.SenderType = "in";
+               
                 message.DialogId = dialog.DialogId;
                 message.ClientId = dialog.ClientUserUserId;
 
@@ -92,7 +92,7 @@ namespace TechnicalSupport
                
                 if (_usersDialog.ContainsKey(message.DialogId))
                 {
-                    message.SenderType = "out";
+                    message.SenderType = "in";
                     await Clients.User(_usersDialog[message.DialogId].ClientUserUserId.ToString()).Receive(message);
                 }
             }

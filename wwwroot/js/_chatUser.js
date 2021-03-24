@@ -17,6 +17,7 @@ document.getElementById("chat-submit").addEventListener("click", function (e) {
     let mes = {};
     mes.name = message.name;
     mes.text = text;
+    mes.senderType = "out";
     hubConnection.invoke("Send", mes);
 });
 
@@ -35,7 +36,7 @@ function Init() {
     document.getElementById("loginBtn").addEventListener("click", function (e) {
         var width = $("#user-chat-container").width();
         userName = document.getElementById("userName").value;
-        document.getElementById("header").innerHTML = "<h3>Welcome " + userName + "</h3>";
+        document.getElementById("header").innerHTML = "<p>Welcome " + userName + "</p>";
         message.name = userName;
         $("#userNameBlock").hide();
         $("#user-chat-container").width = width;
